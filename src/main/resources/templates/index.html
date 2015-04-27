@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{application.name}">Poland Presidential Primaries 2015</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h1 th:text="#{application.name}">Poland Presidential Primaries 2015</h1>
+    <h2 th:text="|#{candidates}:|">Candidates:</h2>
+    <ol th:remove="all-but-first">
+        <li th:each="candidate : ${candidates}" th:object="${candidate}"
+            th:with="secondNameString=*{secondName} ? |*{secondName} | : ''"
+            th:text="|*{firstName} ${secondNameString}*{lastName}, *{age}|">
+            Janusz Ryszard Korwin-Mikke, 72</li>
+        <li>Bronisław Maria Komorowski, 60</li>
+        <li>Andrzej Duda, 50</li>
+    </ol>
+</body>
+</html>
