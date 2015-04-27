@@ -3,18 +3,53 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="#{application.name}">Poland Presidential Primaries 2015</title>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
 </head>
 <body>
-    <h1 th:text="#{application.name}">Poland Presidential Primaries 2015</h1>
-    <h2 th:text="|#{candidates}:|">Candidates:</h2>
+<h1 th:text="#{application.name}">Poland Presidential Primaries 2015</h1>
+
+<h2 th:text="|#{candidates}:|">Candidates:</h2>
+
+<form class="form-horizontal" action="#" th:action="@{/vote}" th:object="${voteForm}" method="post">
     <ol th:remove="all-but-first">
-        <li th:each="candidate : ${candidates}" th:object="${candidate}"
-            th:with="secondNameString=*{secondName} ? |*{secondName} | : ''"
-            th:text="|*{firstName} ${secondNameString}*{lastName}, *{age}|">
-            Janusz Ryszard Korwin-Mikke, 72</li>
-        <li>Bronisław Maria Komorowski, 60</li>
-        <li>Andrzej Duda, 50</li>
+        <li class="form-group" th:each="candidate : *{candidates}">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label th:for="${#ids.next('votedCandidateId')}">
+                        <input type="radio" th:field="*{votedCandidateId}" th:value="${candidate.id}"/>
+                        <span th:with="secondNameString=${candidate.secondName} ? |${candidate.secondName} | : ''"
+                              th:text="|${candidate.firstName} ${secondNameString}${candidate.lastName}, ${candidate.age}|">
+                            Janusz Ryszard Korwin-Mikke, 72</span>
+                    </label>
+                </div>
+            </div>
+        </li>
+        <li class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Bronisław Maria Komorowski, 60</span>
+                    </label>
+                </div>
+            </div>
+        </li>
+        <li class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Andrzej Duda, 50</span>
+                    </label>
+                </div>
+            </div>
+        </li>
     </ol>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" th:text="|#{vote}!|">Głosuj!</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>
