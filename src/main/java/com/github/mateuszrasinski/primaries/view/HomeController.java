@@ -2,7 +2,7 @@ package com.github.mateuszrasinski.primaries.view;
 
 import com.github.mateuszrasinski.primaries.domain.Candidate;
 import com.github.mateuszrasinski.primaries.domain.CandidateRepository;
-import com.github.mateuszrasinski.primaries.dto.VoteForm;
+import com.github.mateuszrasinski.primaries.view.dto.VoteForm;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

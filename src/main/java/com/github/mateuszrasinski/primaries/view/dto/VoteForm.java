@@ -1,4 +1,4 @@
-package com.github.mateuszrasinski.primaries.dto;
+package com.github.mateuszrasinski.primaries.view.dto;
 
 import com.github.mateuszrasinski.primaries.domain.Candidate;
 import java.util.List;
